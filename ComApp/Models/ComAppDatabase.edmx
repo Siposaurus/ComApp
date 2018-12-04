@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ComAppDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ComData">
+          <Key>
+            <PropertyRef Name="Ime" />
+            <PropertyRef Name="Prezime" />
+            <PropertyRef Name="PostanskiBroj" />
+            <PropertyRef Name="Grad" />
+            <PropertyRef Name="Telefon" />
+          </Key>
+          <Property Name="Ime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PostanskiBroj" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Grad" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Function Name="sp_InsertData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ime" Type="varchar" Mode="In" />
+          <Parameter Name="Prezime" Type="varchar" Mode="In" />
+          <Parameter Name="PostanskiBroj" Type="varchar" Mode="In" />
+          <Parameter Name="Grad" Type="varchar" Mode="In" />
+          <Parameter Name="Telefon" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ComAppDatabaseModelStoreContainer">
+          <EntitySet Name="ComData" EntityType="Self.ComData" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComAppDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ComData">
+          <Key>
+            <PropertyRef Name="Ime" />
+            <PropertyRef Name="Prezime" />
+            <PropertyRef Name="PostanskiBroj" />
+            <PropertyRef Name="Grad" />
+            <PropertyRef Name="Telefon" />
+          </Key>
+          <Property Name="Ime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostanskiBroj" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Grad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ComAppDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ComData" EntityType="Self.ComData" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComAppDatabaseModelStoreContainer" CdmEntityContainer="ComAppDatabaseEntities">
+          <EntitySetMapping Name="ComData">
+            <EntityTypeMapping TypeName="ComAppDatabaseModel.ComData">
+              <MappingFragment StoreEntitySet="ComData">
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="PostanskiBroj" ColumnName="PostanskiBroj" />
+                <ScalarProperty Name="Grad" ColumnName="Grad" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ComAppDatabaseModel.ComData">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="ComAppDatabaseModel.Store.sp_InsertData">
+                  <ScalarProperty Name="Telefon" ParameterName="Telefon" />
+                  <ScalarProperty Name="Grad" ParameterName="Grad" />
+                  <ScalarProperty Name="PostanskiBroj" ParameterName="PostanskiBroj" />
+                  <ScalarProperty Name="Prezime" ParameterName="Prezime" />
+                  <ScalarProperty Name="Ime" ParameterName="Ime" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

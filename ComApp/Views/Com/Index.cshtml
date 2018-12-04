@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ComApp.Models.ComData>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    var rowColor = "bg-white";
+}
+<br />
+<div class="jumbotron text-center">
+    <h1>CompApp</h1>
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostanskiBroj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            if (!item.PostanskiBroj.All(char.IsDigit))
+            {
+                rowColor = "bg-danger";
+            }
+
+            <tr class="@rowColor">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostanskiBroj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+            </tr>
+                rowColor = "bg-white";
+        }
+    }
+
+</table>
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-1 col-md-offset-5">
+            @Html.ActionLink("Upload", "Upload", "Com", null, new { @class = "btn btn-info" })
+        </div>
+        <div class="col-md-1">
+            @Html.ActionLink("Save", "Save", "Com", null, new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>
